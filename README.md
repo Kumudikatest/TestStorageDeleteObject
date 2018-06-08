@@ -1,0 +1,2 @@
+# TestStorageDeleteObject
+Test Delete Object
