@@ -5,7 +5,7 @@ const storage = google.storage('v1');
 exports.handler = function (event, context, callback) {
 	storage.objects.delete({
 		bucket: "test_sigma_cloud_storage",
-		object: "Image1.png"
+		object: "Image2.png"
 	})
 		.then(response => {
 			console.log(response.data);           // successful response

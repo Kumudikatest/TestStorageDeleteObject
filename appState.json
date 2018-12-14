@@ -1,1 +1,176 @@
-{"EDITOR_STATE":{"allProjectFiles":{"3db61b8d-f2ab-448e-b24f-42873a9ff261":{"id":"3db61b8d-f2ab-448e-b24f-42873a9ff261","parent":null,"name":"TestStorageDeleteObject","type":"DIRECTORY","isDirectory":true,"children":["b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e","5a932c2f-30b1-4728-8e35-10bc9e2d5832"],"isRemovable":false,"filePath":"TestStorageDeleteObject"},"b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e":{"id":"b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e","parent":"3db61b8d-f2ab-448e-b24f-42873a9ff261","name":"lambda.js","type":"LAMBDA_FILE","isDirectory":false,"children":[],"isRemovable":true,"filePath":"TestStorageDeleteObject/lambda.js","code":"let AWS = require('aws-sdk');\nlet _auth = require('./Authorizer');\nlet google = require('googleapis').google;\nconst storage = google.storage('v1');\nexports.handler = function (event, context, callback) {\n\tstorage.objects.delete({\n\t\tbucket: \"test_sigma_cloud_storage\",\n\t\tobject: \"Image1.png\"\n\t})\n\t\t.then(response => {\n\t\t\tconsole.log(response.data);           // successful response\n\t\t\t/*\n\t\t\t\tresponse.data = {}\n\t\t\t*/\n\t\t})\n\t\t.catch(err => {\n\t\t\tconsole.log(err, err.stack); // an error occurred\n\t\t});\n\n\n\tcallback(null, 'Successfully executed');\n}","triggers":[{"resourceName":"apigusEast1TestGCPStorageDeleteObjectany","config":{}}],"config":{"memory":128,"timeout":60,"runtime":"nodejs8.10"},"version":3,"syncVersion":3,"testCases":{"eb397177-b8b3-4a94-a59f-fa1fb1070202":{"id":"eb397177-b8b3-4a94-a59f-fa1fb1070202","name":"Unnamed event","functionId":"b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e","event":"{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"}}},"5a932c2f-30b1-4728-8e35-10bc9e2d5832":{"id":"5a932c2f-30b1-4728-8e35-10bc9e2d5832","parent":"3db61b8d-f2ab-448e-b24f-42873a9ff261","name":"Authorizer.js","type":"JS_FILE","isDirectory":false,"children":[],"isRemovable":true,"filePath":"TestStorageDeleteObject/Authorizer.js","code":"const google = require(\"googleapis\").google;\n\nconst key = JSON.parse(process.env.GCLOUD_SERVICE_TOKEN);\nconst jwtClient = new google.auth.JWT({\n    email: key.client_email,\n    key: key.private_key,\n    scopes: [\"https://www.googleapis.com/auth/cloud-platform\"]\n});\ngoogle.options({auth: jwtClient, project: process.env.GCLOUD_PROJECT_ID});","triggers":[]}},"rootNode":"3db61b8d-f2ab-448e-b24f-42873a9ff261","openFiles":["b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e"],"currentFileId":"b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e","resources":{"apigusEast1TestGCPStorageDeleteObjectany":{"name":"apigusEast1TestGCPStorageDeleteObjectany","type":"API_GATEWAY","config":{"selectedRegion":"us-east-1","apiMode":1,"apiName":"TestGCPStorage","apiId":"w3g3lxh0jh","endpointType":"EDGE","rootResourceId":"s7ijs7tv82","existingResources":{"/CopyObject":"1uhqu0","/ListObject":"jnfcmy","/":"s7ijs7tv82","/PutObject":"zuy564"},"resourceMode":0,"resourceName":"DeleteObject","resourcePath":"/DeleteObject","restMethod":"ANY","proxyIntegration":false,"enableCORS":false,"stageMode":0,"stageName":"test3"},"globallyEditable":true},"gcstestsigmacloudstorage":{"name":"gcstestsigmacloudstorage","type":"storage","config":{"mode":1,"bucket":{"region":"us-east-1","name":"test_sigma_cloud_storage"}},"globallyEditable":false}},"envVariables":[{"lambdaId":"all","varKey":"SIGMA_AWS_ACC_ID","varValue":null,"shouldPersist":false,"editable":false},{"lambdaId":"all","varKey":"GCLOUD_SERVICE_TOKEN","varValue":null,"shouldPersist":false,"editable":true,"isEditable":true},{"lambdaId":"all","varKey":"GCLOUD_PROJECT_ID","varValue":null,"shouldPersist":false,"editable":true,"isEditable":true}],"packageJSON":{"dependencies":{"aws-sdk":{"name":"aws-sdk","version":"2.176.0","notRemovable":true},"googleapis":{"name":"googleapis","version":"29.0.0","notRemovable":false}}},"lambdaId":"b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e","additionalFiles":[]},"PROJECT_META":{"projectName":"TestStorageDeleteObject","projectDescription":"Test Delete Object","projectVersion":"1.0.0","projectRegion":"us-east-1","repoName":"TestStorageDeleteObject","repoUrl":"https://github.com/Kumudikatest/TestStorageDeleteObject","lastSave":1528450282486}}
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "3db61b8d-f2ab-448e-b24f-42873a9ff261": {
+        "id": "3db61b8d-f2ab-448e-b24f-42873a9ff261",
+        "parent": null,
+        "name": "TestStorageDeleteObject",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e",
+          "5a932c2f-30b1-4728-8e35-10bc9e2d5832"
+        ],
+        "isRemovable": false,
+        "filePath": "TestStorageDeleteObject"
+      },
+      "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e": {
+        "id": "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e",
+        "parent": "3db61b8d-f2ab-448e-b24f-42873a9ff261",
+        "name": "lambda.js",
+        "type": "LAMBDA_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "TestStorageDeleteObject/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nlet _auth = require('./Authorizer');\nlet google = require('googleapis').google;\nconst storage = google.storage('v1');\nexports.handler = function (event, context, callback) {\n\tstorage.objects.delete({\n\t\tbucket: \"test_sigma_cloud_storage\",\n\t\tobject: \"Image2.png\"\n\t})\n\t\t.then(response => {\n\t\t\tconsole.log(response.data);           // successful response\n\t\t\t/*\n\t\t\t\tresponse.data = {}\n\t\t\t*/\n\t\t})\n\t\t.catch(err => {\n\t\t\tconsole.log(err, err.stack); // an error occurred\n\t\t});\n\n\n\tcallback(null, 'Successfully executed');\n}",
+        "triggers": [
+          {
+            "resourceName": "apigusEast1TestGCPStorageDeleteObjectany",
+            "config": {}
+          }
+        ],
+        "config": {
+          "memory": 128,
+          "timeout": 60,
+          "runtime": "nodejs8.10"
+        },
+        "testCases": {
+          "eb397177-b8b3-4a94-a59f-fa1fb1070202": {
+            "id": "eb397177-b8b3-4a94-a59f-fa1fb1070202",
+            "name": "Unnamed event",
+            "functionId": "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
+        }
+      },
+      "5a932c2f-30b1-4728-8e35-10bc9e2d5832": {
+        "id": "5a932c2f-30b1-4728-8e35-10bc9e2d5832",
+        "parent": "3db61b8d-f2ab-448e-b24f-42873a9ff261",
+        "name": "Authorizer.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "TestStorageDeleteObject/Authorizer.js",
+        "code": "const google = require(\"googleapis\").google;\n\nconst key = JSON.parse(process.env.GCLOUD_SERVICE_TOKEN);\nconst jwtClient = new google.auth.JWT({\n    email: key.client_email,\n    key: key.private_key,\n    scopes: [\"https://www.googleapis.com/auth/cloud-platform\"]\n});\ngoogle.options({auth: jwtClient, project: process.env.GCLOUD_PROJECT_ID});",
+        "triggers": []
+      }
+    },
+    "rootNode": "3db61b8d-f2ab-448e-b24f-42873a9ff261",
+    "openFiles": [
+      "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e"
+    ],
+    "currentFileId": "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e",
+    "resources": {
+      "apigusEast1TestGCPStorageDeleteObjectany": {
+        "name": "apigusEast1TestGCPStorageDeleteObjectany",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiMode": 1,
+          "apiName": "TestGCPStorage",
+          "apiId": "w3g3lxh0jh",
+          "endpointType": "EDGE",
+          "rootResourceId": "s7ijs7tv82",
+          "existingResources": {
+            "/CopyObject": "1uhqu0",
+            "/ListObject": "jnfcmy",
+            "/": "s7ijs7tv82",
+            "/PutObject": "zuy564"
+          },
+          "resourceMode": 0,
+          "resourceName": "DeleteObject",
+          "resourcePath": "/DeleteObject",
+          "restMethod": "ANY",
+          "proxyIntegration": false,
+          "enableCORS": false,
+          "stageMode": 0,
+          "stageName": "test3"
+        },
+        "globallyEditable": true
+      },
+      "gcstestsigmacloudstorage": {
+        "name": "gcstestsigmacloudstorage",
+        "type": "storage",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "test_sigma_cloud_storage"
+          }
+        },
+        "globallyEditable": false
+      },
+      "storagetestsigmacloudstorage": {
+        "name": "storagetestsigmacloudstorage",
+        "type": "storage",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "name": "test_sigma_cloud_storage"
+          }
+        },
+        "globallyEditable": false
+      }
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "editable": false,
+        "displayOnly": false
+      },
+      {
+        "lambdaId": "all",
+        "varKey": "GCLOUD_SERVICE_TOKEN",
+        "varValue": null,
+        "shouldPersist": false,
+        "editable": true,
+        "isEditable": true
+      },
+      {
+        "lambdaId": "all",
+        "varKey": "GCLOUD_PROJECT_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "editable": true,
+        "isEditable": true
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "version": "2.176.0",
+          "notRemovable": true
+        },
+        "googleapis": {
+          "name": "googleapis",
+          "version": "29.0.0",
+          "notRemovable": false
+        }
+      }
+    },
+    "lambdaId": "b3638d1c-59ae-4ce7-8b34-5d6c31d44a5e",
+    "additionalFiles": []
+  },
+  "PROJECT_META": {
+    "projectName": "TestStorageDeleteObject",
+    "projectDescription": "Test Delete Object",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1544781082139
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "TestStorageDeleteObject",
+      "url": "https://github.com/Kumudikatest/TestStorageDeleteObject"
+    }
+  }
+}
